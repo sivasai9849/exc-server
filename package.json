@@ -20,7 +20,15 @@
   },
   "homepage": "https://github.com/sivasai9849/exc-server#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.3",
     "dotenv": "^16.4.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.36.0",
+    "sequelize-auto": "^0.8.8"
+  },
+  "devDependencies": {
   }
 }
