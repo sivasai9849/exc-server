@@ -1,8 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const Customer = require('../models/customer');
+const Customer = require('../models/Customer');
 
-router.get('/', async (req, res) => {
+exports.getAllCustomers = async (req, res) => {
     try {
         const userId = req.userId;
         const customers = await Customer.findAll({ where: { user_id: userId } });
@@ -10,18 +8,18 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-});
+};
 
-router.post('/', async (req, res) => {
+exports.createCustomer = async (req, res) => {
     try {
         const customer = await Customer.create({ ...req.body, user_id: req.userId });
         res.status(201).json(customer);
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
-});
+};
 
-router.get('/:id', async (req, res) => {
+exports.getCustomerById = async (req, res) => {
     try {
         const customer = await Customer.findOne({ where: { id: req.params.id, user_id: req.userId } });
         if (!customer) return res.status(404).json({ message: 'Customer not found' });
@@ -29,9 +27,9 @@ router.get('/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-});
+};
 
-router.put('/:id', async (req, res) => {
+exports.updateCustomer = async (req, res) => {
     try {
         const customer = await Customer.findOne({ where: { id: req.params.id, user_id: req.userId } });
         if (!customer) return res.status(404).json({ message: 'Customer not found' });
@@ -40,9 +38,9 @@ router.put('/:id', async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
-});
+};
 
-router.delete('/:id', async (req, res) => {
+exports.deleteCustomer = async (req, res) => {
     try {
         const customer = await Customer.findOne({ where: { id: req.params.id, user_id: req.userId } });
         if (!customer) return res.status(404).json({ message: 'Customer not found' });
@@ -51,6 +49,4 @@ router.delete('/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-});
-
-module.exports = router;
+};

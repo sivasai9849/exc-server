@@ -1,16 +1,10 @@
 const express = require("express");
-require("dotenv").config();;
-const db = require("./config/database");
-const apiRoutes = require("./controllers/api");
-const { Customer } = require('./models/customer');
-const { ExcavatorWork } = require('./models/ExcavatorWork');
-const { User } = require('./models/User');
+const db = require("./src/config/database");
+const apiRoutes = require("./src/routes/apiRoutes");
 const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(express.json());
-
-
 app.use("/", apiRoutes);
 
 db.authenticate()
@@ -23,4 +17,4 @@ db.authenticate()
       console.log(`Server is running on port ${port}`);
     });
   })
-  .catch((err) => console.log("Error: " + err));
+  .catch((err: string) => console.log("Error: " + err));
