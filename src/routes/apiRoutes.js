@@ -1,6 +1,6 @@
 const express = require("express");
-const customerRoutes = require("./customer");
-const healthRoutes = require("./health");
+const customerRoutes = require("./customerRoutes");
+const healthRoutes = require("./healthRoutes");
 const loginRequired = require("../middleware/loginRequired");
 
 const router = express.Router();

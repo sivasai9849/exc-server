@@ -1,8 +1,4 @@
-const express = require('express');
 const { checkAuth } = require('../auth/supabase');
-const e = require('express');
-
-const app = express();
 
 const loginRequired = async (req, res, next) => {
     try {
